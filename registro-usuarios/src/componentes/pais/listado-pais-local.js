@@ -1,4 +1,4 @@
-import axios from 'axios'
+//import axios from 'axios'
 import React, { useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 
@@ -7,13 +7,13 @@ const ListadoPaisLocal = () => {
     const [paises, setPaises] = useState([])
     
     const obtenerPaises = () => {
-        axios.get(`http://localhost:3030/pais-local`)
-            .then((response) => {
-                setPaises(response.data)
-            })
-            .catch((error) => {
-                alert(error);
-            })
+        // axios.get(`http://localhost:3030/pais-local`)
+        //     .then((response) => {
+        //         setPaises(response.data)
+        //     })
+        //     .catch((error) => {
+        //         alert(error);
+        //     })
     }
 
     useEffect(() => {

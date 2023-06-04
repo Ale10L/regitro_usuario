@@ -1,38 +1,39 @@
-import axios from 'axios'
+//import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import dbData from '../../data/db.json'
 
 
 const ListadoUsuarioLocal = () => {
-    const [usuarios, setUsuarios] = useState([])
-    const [generos, setGeneros] = useState([])
-    const [paises, setPaises] = useState([])
+    const [usuarios, setUsuarios] = useState(JSON.parse(localStorage.getItem('usuarios-local')) || [])
+    const [generos, setGeneros] = useState(dbData['generos-local'])
+    const [paises, setPaises] = useState(dbData['pais-local'])
     const obtenerUsuarios = () => {
-        axios.get(`http://localhost:3030/usuarios-local`)
-            .then((response) => {
-                setUsuarios(response.data)
-            })
-            .catch((error) => {
-                alert(error);
-            })
+        // axios.get(`http://localhost:3030/usuarios-local`)
+        //     .then((response) => {
+        //         setUsuarios(response.data)
+        //     })
+        //     .catch((error) => {
+        //         alert(error);
+        //     })
     }
     const obtenerGeneros = () => {
-        axios.get(`http://localhost:3030/generos-local`)
-            .then((response) => {
-                setGeneros(response.data)
-            })
-            .catch((error) => {
-                alert(error);
-            })
+        // axios.get(`http://localhost:3030/generos-local`)
+        //     .then((response) => {
+        //         setGeneros(response.data)
+        //     })
+        //     .catch((error) => {
+        //         alert(error);
+        //     })
     }
     const obtenerPaises = () => {
-        axios.get(`http://localhost:3030/pais-local`)
-            .then((response) => {
-                setPaises(response.data)
-            })
-            .catch((error) => {
-                alert(error);
-            })
+        // axios.get(`http://localhost:3030/pais-local`)
+        //     .then((response) => {
+        //         setPaises(response.data)
+        //     })
+        //     .catch((error) => {
+        //         alert(error);
+        //     })
     }
 
     useEffect(() => {

@@ -1,11 +1,12 @@
-import axios from "axios";
+//import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import validator from "validator";
+import dbData from '../../data/db.json'
 
 
 const FormularioUsuarioLocal = () => {
-  const [usuarios, setUsuarios] = useState([])
+  const [usuarios, setUsuarios] = useState(JSON.parse(localStorage.getItem('usuarios-local')) || [])
   const [usuario, setUsuario] = useState({
     id: 0,
     nombre_completo: '',
@@ -15,9 +16,9 @@ const FormularioUsuarioLocal = () => {
     genero_id: 0,
     pais_id: 0
   })
-  const [generos, setGeneros] = useState([]);
+  const [generos, setGeneros] = useState(dbData["generos-local"]);
   const [genero, setGenero] = useState({ nombre_genero: '' })
-  const [paises, setPaises] = useState([]);
+  const [paises, setPaises] = useState(dbData["pais-local"]);
   const [pais, setPais] = useState({ nombre_pais: '' })
   const [habilitarOtroGenero, setHabilitarOtroGenero] = useState(false);
   const [habilitarOtroPais, setHabilitarOtroPais] = useState(false);
@@ -165,29 +166,30 @@ const FormularioUsuarioLocal = () => {
   }
 
   const obtenerUsuarios = () => {
-    axios.get(`http://localhost:3030/usuarios-local`)
-      .then((response) => {
-        setUsuarios(response.data);
-      })
-      .catch((error) => {
-        alert(error);
-      });
+    // axios.get(`http://localhost:3030/usuarios-local`)
+    //   .then((response) => {
+    //     setUsuarios(response.data);
+    //   })
+    //   .catch((error) => {
+    //     alert(error);
+    //   });
   };
 
   useEffect(() => {
-    if (!idUsuario) {
-      obtenerUsuarios()
-    }
-  }, [idUsuario])
+    // if (!idUsuario) {
+    //   obtenerUsuarios()
+    // }
+    localStorage.setItem('usuarios-local', JSON.stringify(usuarios));
+  }, [usuarios])
 
   const obtenerGeneros = () => {
-    axios.get(`http://localhost:3030/generos-local`)
-      .then((response) => {
-        setGeneros(response.data);
-      })
-      .catch((error) => {
-        alert(error);
-      });
+    // axios.get(`http://localhost:3030/generos-local`)
+    //   .then((response) => {
+    //     setGeneros(response.data);
+    //   })
+    //   .catch((error) => {
+    //     alert(error);
+    //   });
   };
 
   useEffect(() => {
@@ -197,13 +199,13 @@ const FormularioUsuarioLocal = () => {
   }, [idGenero]);
 
   const obtenerPaises = () => {
-    axios.get(`http://localhost:3030/pais-local`)
-      .then((response) => {
-        setPaises(response.data);
-      })
-      .catch((error) => {
-        alert(error);
-      });
+    // axios.get(`http://localhost:3030/pais-local`)
+    //   .then((response) => {
+    //     setPaises(response.data);
+    //   })
+    //   .catch((error) => {
+    //     alert(error);
+    //   });
   };
 
   useEffect(() => {
@@ -216,21 +218,23 @@ const FormularioUsuarioLocal = () => {
     let enviarForm = confrimarFormulario()
     if (enviarForm === true) {
       if (genero.nombre_genero !== "") {
-        axios.post(`http://localhost:3030/generos-local`, genero)
-          .then(() => {
-          })
-          .catch((error) => {
-            alert(error);
-          })
+        // axios.post(`http://localhost:3030/generos-local`, genero)
+        //   .then(() => {
+        //   })
+        //   .catch((error) => {
+        //     alert(error);
+        //   })
+        localStorage.setItem('generos-local', JSON.stringify(dbData["generos-local"]));
       }
 
       if (pais.nombre_pais !== "") {
-        axios.post(`http://localhost:3030/pais-local`, pais)
-          .then(() => {
-          })
-          .catch((error) => {
-            alert(error);
-          })
+        // axios.post(`http://localhost:3030/pais-local`, pais)
+        //   .then(() => {
+        //   })
+        //   .catch((error) => {
+        //     alert(error);
+        //   })
+        localStorage.setItem('pais-local', JSON.stringify(dbData["pais-local"]));
       }
 
       if (usuario.genero_id === "otro_genero") {
@@ -241,14 +245,17 @@ const FormularioUsuarioLocal = () => {
       }
       usuario.genero_id = parseInt(usuario.genero_id)
       usuario.pais_id = parseInt(usuario.pais_id)
-      axios.post(`http://localhost:3030/usuarios-local`, usuario)
-        .then(() => {
-          alert("Se registro un nuevo usuario");
-          navigate('/')
-        })
-        .catch((error) => {
-          alert(error);
-        });
+      // axios.post(`http://localhost:3030/usuarios-local`, usuario)
+      //   .then(() => {
+      //     alert("Se registro un nuevo usuario");
+      //     navigate('/')
+      //   })
+      //   .catch((error) => {
+      //     alert(error);
+      //   });
+      const nuevoUsuario = [...usuarios, usuario];
+      localStorage.setItem("usuarios-local", JSON.stringify(nuevoUsuario));
+      setUsuarios(nuevoUsuario);
     } else {
       navigate('/')
     }

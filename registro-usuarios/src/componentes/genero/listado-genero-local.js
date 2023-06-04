@@ -1,4 +1,4 @@
-import axios from 'axios'
+//import axios from 'axios'
 import React, { useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 
@@ -6,13 +6,13 @@ const ListadoGeneroLocal = () => {
     const [generos, setGeneros] = useState([])
     
     const obtenerGeneros = () => {
-        axios.get(`http://localhost:3030/generos-local`)
-            .then((response) => {
-                setGeneros(response.data)
-            })
-            .catch((error) => {
-                alert(error);
-            })
+        // axios.get(`http://localhost:3030/generos-local`)
+        //     .then((response) => {
+        //         setGeneros(response.data)
+        //     })
+        //     .catch((error) => {
+        //         alert(error);
+        //     })
     }
 
     useEffect(() => {
