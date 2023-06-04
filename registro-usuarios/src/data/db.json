@@ -1,0 +1,29 @@
+{
+  "usuarios-local": [
+    
+  ],
+  "generos-local": [
+    {
+      "id": 1,
+      "nombre_genero": "Masculino"
+    },
+    {
+      "id": 2,
+      "nombre_genero": "Femenino"
+    }
+  ],
+  "pais-local": [
+    {
+      "id": 1,
+      "nombre_pais": "México"
+    },
+    {
+      "id": 2,
+      "nombre_pais": "Estados Unidos"
+    },
+    {
+      "id": 3,
+      "nombre_pais": "Canadá"
+    }
+  ]
+}
